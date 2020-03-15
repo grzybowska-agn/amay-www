@@ -1,10 +1,10 @@
-import React from "react"
+import React, {useState} from "react"
 import styled from "styled-components"
-import { colors } from "../../../theme"
+import {breakpoints, colors} from "../../../theme"
 import Navigation from "./Navigation"
 import HeaderLogo from "./HeaderLogo"
+import Hamburger from './Hamburger'
 import Container from '../Container'
-import { Link } from "gatsby"
 
 const StyledHeader = styled.header`
   width: 100%;
@@ -13,15 +13,26 @@ const StyledHeader = styled.header`
   ${Container} {
     align-items: flex-start;
   }
+  @media screen and (max-width: ${breakpoints.mobile}) {
+    padding: 25px 30px;
+    ${Container} {
+      align-items: center;
+    }
 `
 
-const Header = () => (
-  <StyledHeader>
-    <Container>
-      <HeaderLogo />
-      <Navigation />
-    </Container>
-  </StyledHeader>
-)
+const Header = () => {
+  const [isOpen, setOpen] = useState(false)
+
+  return (
+    <StyledHeader>
+      <Container>
+        <HeaderLogo />
+        <Navigation isOpen={isOpen} />
+        <Hamburger isOpen={isOpen} onClick={() => setOpen(!isOpen)} />
+      </Container>
+    </StyledHeader>
+  )
+
+}
 
 export default Header

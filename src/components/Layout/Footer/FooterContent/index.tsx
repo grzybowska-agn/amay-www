@@ -21,6 +21,7 @@ const SocialMediaBlock = styled(FooterBlock)`
 
 const StyledFooterContent = styled.div`
   display: flex;
+  align-items: center;
   & > ${FooterBlock} {
     margin-right: 70px;
     &:last-of-type {
